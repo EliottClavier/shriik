@@ -9,7 +9,7 @@ class AsciiConverter:
     img: Image = None 
     pixels: Any = None
     ascii_image: String = None
-    new_width: int = 120
+    new_width: int = 100
     chars: Array = ["B","S","#","&","@","$","%","*","!",":","."]
     
     def launch_workflow(self, image_path, image_name) -> None:
@@ -24,6 +24,7 @@ class AsciiConverter:
     def configure_image(self) -> None:
         width, height = self.img.size
         aspect_ratio = height/width
+        # * 0.55 car un caractère ne fait pas la taille d'un carré, donc la hauteur doit prendre moins de ligne que la largeur
         new_height = aspect_ratio * self.new_width * 0.55
 
         self.img = self.img.resize((self.new_width, int(new_height)))
@@ -40,8 +41,11 @@ class AsciiConverter:
         self.ascii_image = "\n".join(self.ascii_image)
 
     def write_image(self, image_name) -> None:
+        print("Writing image...")
         with open(f"ascii/{image_name}.txt", "w") as f:
             f.write(self.ascii_image)
+            f.close()
+        print("Image written.")
 
     def copy_ascii_image_clipboard(self) -> String:
         return self.ascii_image
