@@ -9,7 +9,7 @@ class AsciiConverter:
     img: Image = None 
     pixels: Any = None
     ascii_image: String = None
-    new_width: int = 100
+    new_width: int = 200
     chars: Array = ["B","S","#","&","@","$","%","*","!",":","."]
     
     def launch_workflow(self, image_path, image_name) -> None:
@@ -42,7 +42,7 @@ class AsciiConverter:
 
     def write_image(self, image_name) -> None:
         print("Writing image...")
-        with open(f"ascii/{image_name}.txt", "w") as f:
+        with open(f"{image_name}.txt", "w") as f:
             f.write(self.ascii_image)
             f.close()
         print("Image written.")

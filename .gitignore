@@ -131,3 +131,6 @@ dmypy.json
 images
 ascii
 braille
+
+previous_image.txt
+ascii_image.txt
